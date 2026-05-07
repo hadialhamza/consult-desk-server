@@ -17,13 +17,15 @@ const chat = async (prompt: string, userId: string) => {
   );
   const response = result.response.text();
 
-  // Log the AI interaction
-  await AiLog.create({
-    userId,
-    type: "chat",
-    prompt,
-    response,
-  });
+  // Log the AI interaction if userId is present
+  if (userId) {
+    await AiLog.create({
+      userId,
+      type: "chat",
+      prompt,
+      response,
+    });
+  }
 
   return response;
 };
@@ -36,6 +38,7 @@ const generateChecklist = async (
   const prompt = `Generate a comprehensive visa document checklist for ${country} ${visaType} visa.
   Return the response in a structured JSON format with three categories: 
   "required" (mandatory documents), "optional" (supporting documents), and "warnings" (important tips).
+  Each category should be an array of simple strings (descriptions).
   Only return the JSON object, nothing else.`;
 
   const result = await model.generateContent(prompt);
@@ -44,14 +47,16 @@ const generateChecklist = async (
   // Clean potential markdown formatting from AI response
   response = response.replace(/```json|```/g, "").trim();
 
-  // Log the AI interaction
-  await AiLog.create({
-    userId,
-    type: "checklist",
-    prompt: `${country} ${visaType} checklist`,
-    response,
-    metadata: { country, visaType },
-  });
+  // Log the AI interaction if userId is present
+  if (userId) {
+    await AiLog.create({
+      userId,
+      type: "checklist",
+      prompt: `${country} ${visaType} checklist`,
+      response,
+      metadata: { country, visaType },
+    });
+  }
 
   return JSON.parse(response);
 };

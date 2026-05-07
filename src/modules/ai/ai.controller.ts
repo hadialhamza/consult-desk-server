@@ -5,23 +5,23 @@ import { AiService } from './ai.service';
 
 const handleChat = catchAsync(async (req, res) => {
   const { prompt } = req.body;
-  const userId = req.user!.userId;
+  const userId = req.user?.userId;
 
-  const result = await AiService.chat(prompt, userId);
+  const result = await AiService.chat(prompt, userId as string);
 
   sendResponse(res, {
     statusCode: StatusCodes.OK,
     success: true,
     message: 'AI response generated successfully',
-    data: result,
+    data: { response: result },
   });
 });
 
 const handleChecklist = catchAsync(async (req, res) => {
   const { country, visaType } = req.body;
-  const userId = req.user!.userId;
+  const userId = req.user?.userId;
 
-  const result = await AiService.generateChecklist(country, visaType, userId);
+  const result = await AiService.generateChecklist(country, visaType, userId as string);
 
   sendResponse(res, {
     statusCode: StatusCodes.OK,

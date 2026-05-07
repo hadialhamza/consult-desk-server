@@ -8,14 +8,12 @@ const router = Router();
 
 router.post(
   '/chat',
-  auth(),
   validateRequest(AiValidation.chatValidation),
   AiController.handleChat
 );
 
 router.post(
   '/checklist',
-  auth(),
   validateRequest(AiValidation.checklistValidation),
   AiController.handleChecklist
 );
