@@ -79,8 +79,18 @@ const deleteReview = async (id: string, userId: string, role: string) => {
   return result;
 };
 
+const getAllReviews = async () => {
+  const result = await Review.find()
+    .populate("userId", "name avatar")
+    .sort("-createdAt")
+    .limit(10)
+    .lean();
+  return result;
+};
+
 export const ReviewService = {
   createReview,
   getReviewsByServiceId,
+  getAllReviews,
   deleteReview,
 };

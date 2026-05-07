@@ -13,6 +13,8 @@ router.post(
   ReviewController.createReview,
 );
 
+router.get("/", ReviewController.getAllReviews);
+
 router.get("/visa-service/:visaServiceId", ReviewController.getReviewsByServiceId);
 
 router.delete("/:id", auth("admin", "user"), ReviewController.deleteReview);
