@@ -2,6 +2,7 @@ import User from "../user/user.model";
 import Client from "../client/client.model";
 import Booking from "../booking/booking.model";
 import Account from "../account/account.model";
+import Country from "../country/country.model";
 
 const getStats = async () => {
   const [userCount, clientCount, bookingCount, accountStats] = await Promise.all([
@@ -37,6 +38,21 @@ const getStats = async () => {
   };
 };
 
+const getPublicStats = async () => {
+  const [clientCount, countryCount, bookingCount] = await Promise.all([
+    Client.countDocuments(),
+    Country.countDocuments(),
+    Booking.countDocuments(),
+  ]);
+
+  return {
+    totalClients: clientCount, 
+    totalCountries: countryCount,
+    totalBookings: bookingCount,
+    successRate: 98,
+  };
+};
+
 const getChartData = async () => {
   const sixMonthsAgo = new Date();
   sixMonthsAgo.setMonth(sixMonthsAgo.getMonth() - 6);
@@ -58,5 +74,6 @@ const getChartData = async () => {
 
 export const DashboardService = {
   getStats,
+  getPublicStats,
   getChartData,
 };

@@ -4,6 +4,8 @@ import { DashboardController } from "./dashboard.controller";
 
 const router = Router();
 
+router.get("/public-stats", DashboardController.getPublicStats);
+
 router.get(
   "/stats",
   auth("admin", "manager"),

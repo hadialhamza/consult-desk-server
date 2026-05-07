@@ -25,7 +25,19 @@ const getChartData = catchAsync(async (req, res) => {
   });
 });
 
+const getPublicStats = catchAsync(async (req, res) => {
+  const result = await DashboardService.getPublicStats();
+
+  sendResponse(res, {
+    statusCode: StatusCodes.OK,
+    success: true,
+    message: "Public stats fetched successfully",
+    data: result,
+  });
+});
+
 export const DashboardController = {
   getStats,
+  getPublicStats,
   getChartData,
 };
