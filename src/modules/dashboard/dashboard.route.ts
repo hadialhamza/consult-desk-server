@@ -1,9 +1,19 @@
-import { Router } from 'express';
+import { Router } from "express";
+import auth from "../../middleware/auth";
+import { DashboardController } from "./dashboard.controller";
 
 const router = Router();
 
-// Dashboard analytics routes — to be implemented
-// GET /api/dashboard/stats
-// GET /api/dashboard/chart-data
+router.get(
+  "/stats",
+  auth("admin", "manager"),
+  DashboardController.getStats,
+);
+
+router.get(
+  "/chart-data",
+  auth("admin", "manager"),
+  DashboardController.getChartData,
+);
 
 export const DashboardRoutes = router;

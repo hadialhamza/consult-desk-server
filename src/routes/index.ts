@@ -9,22 +9,26 @@ import { ReviewRoutes } from '../modules/review/review.route';
 import { AccountRoutes } from '../modules/account/account.route';
 import { CmsRoutes } from '../modules/cms/cms.route';
 import { DashboardRoutes } from '../modules/dashboard/dashboard.route';
-import { AiRoutes } from '../modules/ai/ai.route';
+import { AiRoutes } from "../modules/ai/ai.route";
+import { ContactRoutes } from "../modules/contact/contact.route";
+import { NewsletterRoutes } from "../modules/newsletter/newsletter.route";
 
 const router = Router();
 
 const moduleRoutes = [
-  { path: '/auth', route: AuthRoutes },
-  { path: '/users', route: UserRoutes },
-  { path: '/visa-services', route: VisaServiceRoutes },
-  { path: '/countries', route: CountryRoutes },
-  { path: '/clients', route: ClientRoutes },
-  { path: '/bookings', route: BookingRoutes },
-  { path: '/reviews', route: ReviewRoutes },
-  { path: '/accounts', route: AccountRoutes },
-  { path: '/cms', route: CmsRoutes },
-  { path: '/dashboard', route: DashboardRoutes },
-  { path: '/ai', route: AiRoutes },
+  { path: "/auth", route: AuthRoutes },
+  { path: "/users", route: UserRoutes },
+  { path: "/visa-services", route: VisaServiceRoutes },
+  { path: "/countries", route: CountryRoutes },
+  { path: "/clients", route: ClientRoutes },
+  { path: "/bookings", route: BookingRoutes },
+  { path: "/reviews", route: ReviewRoutes },
+  { path: "/accounts", route: AccountRoutes },
+  { path: "/cms", route: CmsRoutes },
+  { path: "/dashboard", route: DashboardRoutes },
+  { path: "/ai", route: AiRoutes },
+  { path: "/contact", route: ContactRoutes },
+  { path: "/newsletter", route: NewsletterRoutes },
 ];
 
 moduleRoutes.forEach(({ path, route }) => {
